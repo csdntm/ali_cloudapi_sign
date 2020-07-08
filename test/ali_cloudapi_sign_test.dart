@@ -5,9 +5,9 @@ import 'package:ali_cloudapi_sign/ali_cloudapi_sign.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'api.dart';
 
-final String urlGet = "https://app-gw.csdn.net/httpbin/get";
+final String urlGet = Platform.environment['urlGet'];
 final String urlGetWithParam = "$urlGet?a=1&b=2";
-final String urlPost = "https://app-gw.csdn.net/httpbin/post";
+final String urlPost = Platform.environment['urlPost'];
 final String urlPostWithParam = "$urlPost?a=1&b=2";
 void main() {
   AliSign.gatewayStage = "PRE"; //PRE TEST
