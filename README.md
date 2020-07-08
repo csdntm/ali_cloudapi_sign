@@ -1,14 +1,21 @@
 # ali_cloudapi_sign
 
-A new Flutter package project.
+阿里云网关签名算法实现
 
 ## Getting Started
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+```
+//设置网关的域名
+AliSign.gatewayHosts = [];
+//设置网关的Appkey
+AliSign.gatewayAppkey = "";
+//设置网关的Appsecret
+AliSign.gatewayAppsecret = "";
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+//对访问的地址进行签名，返回签名的头信息
+Map<String, dynamic> headers =
+        AliSign.creatAliGatewaySign("get", Uri.parse(url), query);
+
+```
+
+
