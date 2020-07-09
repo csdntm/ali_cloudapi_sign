@@ -1,4 +1,4 @@
-# ali_cloudapi_sign
+# ali_cloudapi_sign [![Pub](https://img.shields.io/pub/v/ali_cloudapi_sign.svg?style=flat-square)](https://pub.dartlang.org/packages/ali_cloudapi_sign)
 
 阿里云网关签名算法实现
 

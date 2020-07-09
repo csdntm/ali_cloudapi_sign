@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:test/test.dart';
 
 import 'package:ali_cloudapi_sign/ali_cloudapi_sign.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'api.dart';
 
 final String urlGet = Platform.environment['urlGet'];
