@@ -21,7 +21,7 @@ class AliSign {
       [Map<String, String> queryParameters]) {
     if (gatewayAppkey.isEmpty ||
         gatewayAppsecret.isEmpty ||
-        gatewayHosts.length == 0) {
+        gatewayHosts.isEmpty) {
       throw Exception(
           "pls specify gatewayAppkey/gatewayAppsecret/gatewayHosts");
     }
@@ -31,17 +31,19 @@ class AliSign {
     }
 
     params =
-        new SplayTreeMap<String, String>.from(params, (a, b) => a.compareTo(b));
+        SplayTreeMap<String, String>.from(params, (a, b) => a.compareTo(b));
 
-    Map<String, String> headerParams = new Map<String, String>();
+    Map<String, String> headerParams = Map<String, String>();
     headerParams.putIfAbsent("x-ca-key", () => gatewayAppkey);
     headerParams.putIfAbsent("accept", () => "application/json");
-    if (method.toUpperCase() == "POST")
+    if (method.toUpperCase() == "POST") {
       headerParams.putIfAbsent(
           "content-type", () => "application/json; charset=utf-8");
-    var time = new DateTime.now().millisecondsSinceEpoch;
+    }
+
+    var time = DateTime.now().millisecondsSinceEpoch;
     headerParams.putIfAbsent("x-ca-timestamp", () => time.toString());
-    StringBuffer sb = new StringBuffer();
+    StringBuffer sb = StringBuffer();
 
     sb.write(method.toUpperCase() + CLOUDAPI_LF);
     List<String> keys = ["accept", "content-md5", "content-type", "date"];
@@ -61,7 +63,7 @@ class AliSign {
 
     if (null != params && params.length > 0) {
       String queryString =
-          Uri(queryParameters: new Map<String, dynamic>.from(params)).query;
+          Uri(queryParameters: Map<String, dynamic>.from(params)).query;
       sb.write("?$queryString");
     }
 
@@ -76,7 +78,7 @@ class AliSign {
       StringBuffer string, Map<dynamic, dynamic> headerParams) {
     var key = utf8.encode(gatewayAppsecret);
     var bytes = utf8.encode(string.toString());
-    var hmacSha256 = new Hmac(sha256, key);
+    var hmacSha256 = Hmac(sha256, key);
     var digest = hmacSha256.convert(bytes);
     String sign = base64Encode(digest.bytes);
     headerParams.putIfAbsent("x-ca-signature", () => sign);
