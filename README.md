@@ -20,4 +20,4 @@ Map<String, dynamic> headers =
 
 ```
 
-
+如果使用 dio 实现网络请求，可以使用 dio 拦截器[(dio_ali_sign)](https://github.com/csdntm/dio_ali_sign) 实现请求签名 https://github.com/csdntm/dio_ali_sign
