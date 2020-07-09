@@ -1,7 +1,9 @@
 name: ali_cloudapi_sign
-description: A new Flutter package project.
-version: 1.0.0
-homepage: https://github.com/csdntb/ali_cloudapi_sign
+description: ali_cloudapi_sign is package that sign aliyun api gateway request header,easy to use.
+
+version: 1.0.7
+
+homepage: https://github.com/csdntm/ali_cloudapi_sign
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

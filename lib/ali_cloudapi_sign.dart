@@ -4,7 +4,8 @@ import 'dart:collection';
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
 
-// 阿里网关签名算法文档 https://help.aliyun.com/document_detail/29475.html
+/// 阿里网关签名
+/// 阿里网关签名算法文档 https://help.aliyun.com/document_detail/29475.html
 class AliSign {
   static const String CLOUDAPI_LF = "\n";
   static String gatewayAppkey = "";
@@ -12,6 +13,10 @@ class AliSign {
   static List<String> gatewayHosts = [];
   static String gatewayStage = "";
 
+  ///阿里网关签名
+  /// [method] GET/POST
+  /// [uri] url，可以包含query
+  /// [queryParameters] 可选参数，url中的query
   static Map<String, String> creatAliGatewaySign(String method, Uri uri,
       [Map<String, String> queryParameters]) {
     if (gatewayAppkey.isEmpty ||
