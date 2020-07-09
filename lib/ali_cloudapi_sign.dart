@@ -61,7 +61,7 @@ class AliSign {
         (CLOUDAPI_LF));
     sb.write(uri.path);
 
-    if (null != params && params.length > 0) {
+    if (null != params && params.isNotEmpty) {
       String queryString =
           Uri(queryParameters: Map<String, dynamic>.from(params)).query;
       sb.write("?$queryString");
@@ -83,7 +83,7 @@ class AliSign {
     String sign = base64Encode(digest.bytes);
     headerParams.putIfAbsent("x-ca-signature", () => sign);
     //是否正式环境
-    if (gatewayStage.length > 0) {
+    if (gatewayStage.isNotEmpty) {
       headerParams.putIfAbsent(
           "X-Ca-Stage", () => gatewayStage.toUpperCase()); // TEST 测试 // PRE 预发布
     }

@@ -18,6 +18,6 @@
 
 - 修改为 dart 项目
 
-## [1.0.10]
+## [1.0.11]
 
 - fix pub.dev health suggestions
