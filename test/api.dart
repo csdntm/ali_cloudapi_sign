@@ -1,8 +1,6 @@
-import 'dart:io';
-
 import 'package:ali_cloudapi_sign/ali_cloudapi_sign.dart';
-import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_proxy/dio_proxy.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class AppException implements Exception {
@@ -40,17 +38,7 @@ class Api {
     //是否启用代理
     bool isUseProxy = false;
     if (!isRelease && isUseProxy) {
-      (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-          (client) {
-        String proxy =
-            Platform.isAndroid ? '<YOUR_LOCAL_IP>:8888' : 'localhost:8888';
-        client.findProxy = (url) {
-          return 'PROXY $proxy';
-        };
-
-        client.badCertificateCallback =
-            (X509Certificate cert, String host, int port) => true;
-      };
+      dio.httpClientAdapter = HttpProxyAdapter();
     }
 
     return dio;
