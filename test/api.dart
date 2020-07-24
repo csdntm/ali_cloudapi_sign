@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ali_cloudapi_sign/ali_cloudapi_sign.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_proxy/dio_proxy.dart';
@@ -53,7 +55,7 @@ class Api {
     };
 
     Map<String, dynamic> headers =
-        AliSign.creatAliGatewaySign("get", Uri.parse(url), query);
+        AliSign.creatAliGatewaySign("get", Uri.parse(url), queryParameters: query);
     Options options = new Options(
         headers: headers,
         contentType: "application/json; charset=utf-8",
@@ -92,6 +94,32 @@ class Api {
     try {
       Response response = await dio.post(url, data: query, options: options);
 
+      objBody = response.data;
+    } on DioError catch (e) {
+      throw BadRequestException(e.response.data.toString());
+    }
+    return objBody;
+  }
+
+  Future<Map<String, dynamic>> testUploadDioPost(String url) async {
+    Map<String, dynamic> objBody;
+    FormData formData = FormData.fromMap({
+      "name": "wendux",
+      "age": 25,
+      "filename": await MultipartFile.fromFile("./pubspec.yaml",
+          filename: "pubspec.yaml"),
+    });
+    Map<String, dynamic> headers =
+        AliSign.creatAliGatewaySign("POST", Uri.parse(url), formData: formData);
+
+    Options options = new Options(
+        headers: headers,
+        responseType: ResponseType.json);
+
+    Dio dio = getDio();
+    try {
+      Response response = await dio.post(url, data: formData, options: options);
+      print("============="+response.toString());
       objBody = response.data;
     } on DioError catch (e) {
       throw BadRequestException(e.response.data.toString());
