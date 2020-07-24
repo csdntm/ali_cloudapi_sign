@@ -54,8 +54,9 @@ class Api {
       "cookieid": "AC64881A-7F49-48DE-B316-B465795E8286"
     };
 
-    Map<String, dynamic> headers =
-        AliSign.creatAliGatewaySign("get", Uri.parse(url), queryParameters: query);
+    Map<String, dynamic> headers = AliSign.creatAliGatewaySign(
+        "get", Uri.parse(url),
+        queryParameters: query);
     Options options = new Options(
         headers: headers,
         contentType: "application/json; charset=utf-8",
@@ -112,14 +113,12 @@ class Api {
     Map<String, dynamic> headers =
         AliSign.creatAliGatewaySign("POST", Uri.parse(url), formData: formData);
 
-    Options options = new Options(
-        headers: headers,
-        responseType: ResponseType.json);
+    Options options =
+        new Options(headers: headers, responseType: ResponseType.json);
 
     Dio dio = getDio();
     try {
       Response response = await dio.post(url, data: formData, options: options);
-      print("============="+response.toString());
       objBody = response.data;
     } on DioError catch (e) {
       throw BadRequestException(e.response.data.toString());

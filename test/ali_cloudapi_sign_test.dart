@@ -43,13 +43,11 @@ void main() {
     expect(data['category'], equals('home'));
   });
 
-
   test('testUploadDioPost', () async {
     Api _api = new Api();
     Map<String, dynamic> ret = await _api.testUploadDioPost(urlPost);
 
-    var data = json.decode(ret['files']);
-    print(data);
-//    expect(data['category'], equals('home'));
+    var data = ret['files'];
+    expect(data, isNotEmpty);
   });
 }
