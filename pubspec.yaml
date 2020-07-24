@@ -1,7 +1,7 @@
 name: ali_cloudapi_sign
 description: ali_cloudapi_sign is package that sign aliyun api gateway request header,easy to use.
 
-version: 1.0.12
+version: 1.0.13
 
 homepage: https://github.com/csdntm/ali_cloudapi_sign
 
@@ -9,10 +9,11 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  dio: ^3.0.9
   crypto: ^2.1.3
 
 dev_dependencies:
-  dio: ^3.0.9
   pretty_dio_logger: ^1.1.1
   dio_proxy: ^1.0.2
   test: ^1.15.2
+  pedantic: ^1.9.0

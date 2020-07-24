@@ -21,3 +21,7 @@
 ## [1.0.12]
 
 - fix pub.dev health suggestions
+
+## [1.0.13]
+
+- 支持文件上传
